@@ -1,0 +1,1 @@
+# This module defines constant values for environment variable names used in the application.
