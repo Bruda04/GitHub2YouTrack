@@ -22,7 +22,8 @@ class GitHubClient:
                     number=issue.number,
                     title=issue.title,
                     url=issue.html_url,
-                    status=issue.state
+                    status=issue.state,
+                    description=issue.body
                 )
                 issues_list.append(entity)
 
