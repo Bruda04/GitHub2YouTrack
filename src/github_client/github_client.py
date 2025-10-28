@@ -16,14 +16,17 @@ class GitHubClient:
     def get_repository_issues(self) -> List[Issue]:
         issues_list = []
         try:
-            issues = self.repository.get_issues(state='open')
+            issues = self.repository.get_issues()
             for issue in issues:
                 entity = Issue(
                     number=issue.number,
                     title=issue.title,
                     url=issue.html_url,
-                    status=issue.state,
-                    description=issue.body
+                    state=issue.state,
+                    body=issue.body,
+                    assignees=[assignee.login for assignee in issue.assignees],
+                    labels=[label.name for label in issue.labels],
+                    user=issue.user.login if issue.user else ""
                 )
                 issues_list.append(entity)
 
