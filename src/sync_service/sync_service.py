@@ -55,15 +55,20 @@ class SyncService:
         deleted_count = 0
         all_mapped_issues = self.mapping_store.get_all_mappings()
 
-        for issue_number, data in all_mapped_issues.items():
+        issues_to_delete = [
+            (int(issue_number), data['youtrack_id']) for issue_number, data in all_mapped_issues.items()
+            if int(issue_number) not in current_issue_numbers
+        ]
+
+        for issue_number, youtrack_id in issues_to_delete:
             if issue_number not in current_issue_numbers:
                 print(f"\tDeleting issue #{issue_number} (no longer exists in GitHub)")
                 try:
-                    self.youtrack_client.delete_task(data['youtrack_id'])
+                    self.youtrack_client.delete_task(youtrack_id)
                     self.mapping_store.remove_mapping(issue_number)
                     deleted_count += 1
                 except Exception as e:
-                    print(f"\tFailed to delete task {data['youtrack_id']}: {e}")
+                    print(f"\tFailed to delete task {youtrack_id}: {e}")
 
         return deleted_count
 
