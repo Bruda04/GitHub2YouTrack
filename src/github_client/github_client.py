@@ -16,7 +16,7 @@ class GitHubClient:
     def get_repository_issues(self) -> List[Issue]:
         issues_list = []
         try:
-            issues = self.repository.get_issues()
+            issues = self.repository.get_issues(state="all")
             for issue in issues:
                 entity = Issue(
                     number=issue.number,

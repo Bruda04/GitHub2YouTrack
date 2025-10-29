@@ -9,7 +9,6 @@ def convert_issue_to_task(issue: Issue) -> Task:
         description=f"{issue.body}\n\nOriginal Issue URL: {issue.url}"
     )
 
-    # Add custom fields if available
     if issue.state:
         state_mapping = {
             "open": "To do",
@@ -31,3 +30,15 @@ def convert_issue_to_task(issue: Issue) -> Task:
 
 def convert_issues_to_tasks(issues: list[Issue]) -> list[Task]:
     return [convert_issue_to_task(issue) for issue in issues]
+
+def convert_issue_to_dict(issue: Issue) -> dict:
+    return {
+        "number": issue.number,
+        "title": issue.title,
+        "body": issue.body,
+        "state": issue.state,
+        "labels": issue.labels or [],
+        "assignees": issue.assignees or [],
+        "url": issue.url,
+        "user": issue.user
+    }
