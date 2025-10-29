@@ -6,7 +6,8 @@ def convert_issue_to_task(issue: Issue) -> Task:
     task = Task(
         task_id=issue.number,
         summary=issue.title,
-        description=f"{issue.body}\n\nOriginal Issue URL: {issue.url}"
+        description=f"{issue.body}\n\nOriginal Issue URL: {issue.url}",
+        tags=issue.labels or []
     )
 
     if issue.state:

@@ -5,11 +5,13 @@ class Task:
                  task_id: int,
                  summary: str,
                  description: str = '',
+                 tags: list[str] = None
                  ):
         self.task_id = task_id
         self.summary = summary
         self.description = description
         self.custom_fields = []
+        self.tags = tags
 
     def add_custom_field(self, field_name: str, field_value, field_type: str = None):
         field_entry = {
