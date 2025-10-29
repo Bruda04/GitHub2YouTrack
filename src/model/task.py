@@ -1,3 +1,5 @@
+# Task model representing a task in YouTrack
+
 class Task:
     def __init__(self,
                  task_id: int,

@@ -1,3 +1,4 @@
+# YouTrack Client to interact with YouTrack API for creating and updating tasks.
 import requests
 from src.model.task import Task
 

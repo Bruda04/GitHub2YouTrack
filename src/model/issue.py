@@ -1,3 +1,4 @@
+# This module defines the Issue class representing an issue in a GitHub repository.
 class Issue:
     def __init__(self,
                  number: int,

@@ -1,6 +1,6 @@
+# This module provides functions to convert Issue objects to Task objects
 from .issue import Issue
 from .task import Task
-
 
 def convert_issue_to_task(issue: Issue) -> Task:
     task = Task(

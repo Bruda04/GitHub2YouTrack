@@ -1,6 +1,6 @@
+# This module provides a simple storage mechanism for maintaining mappings between GitHub issues and YouTrack tasks
 import json
 import os
-
 
 class MappingStore:
     def __init__(self, storage_file: str = "github_youtrack_mapping.json"):

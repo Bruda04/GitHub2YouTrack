@@ -1,10 +1,8 @@
+# This module defines a GitHubClient class that interacts with the GitHub API to fetch issues from a specified repository
 from typing import List
-
 from github import Auth
 from github import Github
-
 from src.model.issue import Issue
-
 
 class GitHubClient:
     def __init__(self, token: str, repository_name: str):

@@ -1,3 +1,4 @@
+# Service to synchronize GitHub issues with YouTrack tasks
 from src.model.issue import Issue
 from src.storage.mapping_store import MappingStore
 from .change_detection import ChangeDetector

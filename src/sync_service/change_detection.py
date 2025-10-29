@@ -1,5 +1,5 @@
+# This module provides functionality to detect changes between the current state of an issue
 from src.model.issue import Issue
-
 
 class ChangeDetector:
     @staticmethod

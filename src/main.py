@@ -1,3 +1,4 @@
+# Main entry point for the GitHub to YouTrack synchronization application
 import time
 from src.github_client.github_client import GitHubClient
 from src.sync_service.change_detection import ChangeDetector

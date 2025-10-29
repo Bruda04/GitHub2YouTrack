@@ -1,3 +1,4 @@
+# This module defines a SyncScheduler class that periodically triggers synchronization of GitHub issues using a provided sync service and GitHub client
 import time
 import schedule
 from threading import Thread
