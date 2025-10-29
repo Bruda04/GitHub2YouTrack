@@ -20,8 +20,6 @@ def main():
 
     print("\nFetching GitHub issues...")
     github_issues = github_client.get_repository_issues()
-    print("\nFetched issues:")
-    print(github_issues)
     print(f"Found {len(github_issues)} issues in GitHub.\n")
 
     if github_issues:

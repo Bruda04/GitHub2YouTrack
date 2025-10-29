@@ -21,7 +21,7 @@ class GitHubClient:
                     title=issue.title,
                     url=issue.html_url,
                     state=issue.state,
-                    body=issue.body,
+                    body=issue.body if issue.body != "None" else "",
                     assignees=[assignee.login for assignee in issue.assignees],
                     labels=[label.name for label in issue.labels],
                     user=issue.user.login if issue.user else ""

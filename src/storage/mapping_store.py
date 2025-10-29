@@ -39,3 +39,8 @@ class MappingStore:
 
     def get_all_mappings(self) -> dict:
         return self.mappings
+
+    def remove_mapping(self, github_issue_number: int):
+        if str(github_issue_number) in self.mappings:
+            del self.mappings[str(github_issue_number)]
+            self._save_mappings()

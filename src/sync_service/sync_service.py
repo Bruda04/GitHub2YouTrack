@@ -19,6 +19,12 @@ class SyncService:
         updated_count = 0
         skipped_count = 0
 
+        # Get current GitHub issue numbers
+        current_issue_numbers = {issue.number for issue in github_issues}
+
+        # Check for deleted issues
+        deleted_count = self._handle_deleted_issues(current_issue_numbers)
+
         for issue in github_issues:
             youtrack_id = self.mapping_store.get_youtrack_id(issue.number)
             last_synced_state = self.mapping_store.get_last_synced_state(issue.number)
@@ -40,10 +46,26 @@ class SyncService:
                 created_count += 1
 
         print(f"\n=== Sync completed ===")
-        print(f"Created: {created_count}, Updated: {updated_count}, Skipped: {skipped_count}")
+        print(f"Created: {created_count}, Updated: {updated_count}, Skipped: {skipped_count}, Deleted: {deleted_count}")
 
     def sync_issue(self, issue: Issue):
         self.sync_issues([issue])
+
+    def _handle_deleted_issues(self, current_issue_numbers: set[int]) -> int:
+        deleted_count = 0
+        all_mapped_issues = self.mapping_store.get_all_mappings()
+
+        for issue_number, data in all_mapped_issues.items():
+            if issue_number not in current_issue_numbers:
+                print(f"\tDeleting issue #{issue_number} (no longer exists in GitHub)")
+                try:
+                    self.youtrack_client.delete_task(data['youtrack_id'])
+                    self.mapping_store.remove_mapping(issue_number)
+                    deleted_count += 1
+                except Exception as e:
+                    print(f"\tFailed to delete task {data['youtrack_id']}: {e}")
+
+        return deleted_count
 
     def _create_new_task(self, issue: Issue):
         try:

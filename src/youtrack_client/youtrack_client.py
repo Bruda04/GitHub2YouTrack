@@ -125,5 +125,10 @@ class YouTrackClient:
         print(f"\tCreated missing tag: {tag_name}")
         return {"id": created_tag["id"], "name": tag_name}
 
-    def _remove_all_tags_from_issue(self, issue_id):
-        pass
+    def delete_task(self, task_id: str):
+        try:
+            url = f"{self.base_url}/issues/{task_id}"
+            response = requests.delete(url, headers=self.headers)
+            response.raise_for_status()
+        except Exception as e:
+            print(f"\tFailed to delete task {task_id}: {e}")
