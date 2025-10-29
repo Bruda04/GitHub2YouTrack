@@ -50,6 +50,8 @@ YOUTRACK_PROJECT_SHORT_NAME=your_youtrack_project_short_name_here
 SYNC_INTERVAL_MINUTES=1
 ```
 
+4. [Run the program](#usage)
+
 ## Getting Tokens
 
 ### GitHub Token
@@ -66,7 +68,7 @@ SYNC_INTERVAL_MINUTES=1
 
 Run the sync:
 ```bash
-python main.py
+python -m src.main
 ```
 
 The program will:
