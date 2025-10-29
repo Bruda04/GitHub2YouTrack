@@ -7,6 +7,10 @@ Automatically synchronize GitHub issues to YouTrack tasks, including updates.
 - ✅ Create YouTrack tasks from GitHub issues
 - 🔄 Sync updates (title, description, state, labels, assignees)
 
+## Demo
+
+[Demo Video](doc/demo/demo.mp4)
+
 ## Prerequisites
 
 - Python 3.12+
